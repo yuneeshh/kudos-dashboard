@@ -90,7 +90,7 @@ export default function Dashboard() {
             Welcome {user?.username}!
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Organization: {user?.organization}
+          Organization: {user?.organization || "You are not in any organization"}
           </Typography>
 
           <Grid container spacing={3} sx={{ mt: 3 }}>

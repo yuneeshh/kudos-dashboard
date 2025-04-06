@@ -15,7 +15,7 @@ interface KudoFormProps {
 
 const KudoForm: React.FC<KudoFormProps> = ({ onKudoSent }) => {
   const [users, setUsers] = useState<User[]>([]);
-  const [receiver, setReceiver] = useState<number | undefined>(undefined);
+  const [receiver, setReceiver] = useState<number | "">("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -50,6 +50,7 @@ const KudoForm: React.FC<KudoFormProps> = ({ onKudoSent }) => {
       setReceiver(null);
       setMessage("");
       onKudoSent(); // Refresh kudos list
+      setReceiver("")
       showToast.success("Kudos sent successfully")
     } catch (err) {
         showToast.error(err.response.data.receiver_id[0])
@@ -68,7 +69,7 @@ const KudoForm: React.FC<KudoFormProps> = ({ onKudoSent }) => {
       <TextField
         select
         label="Receiver"
-        value={receiver ??  undefined}
+        value={receiver}
         onChange={handleReceiverChange}
         fullWidth
         margin="normal"
